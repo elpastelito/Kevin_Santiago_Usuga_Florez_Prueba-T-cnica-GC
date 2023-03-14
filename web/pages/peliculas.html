@@ -1,0 +1,70 @@
+<div class="mb-5">
+  <div class="mb-3">
+    <input type="text" class="form-control" id="searchMovie" placeholder="Buscar pelicula">
+  </div>
+  <div class="container row">
+    <!-- TODO: Con el ng-for deberás hacer que por cada pelicula que venga en la API, se deberá mostrar este mismo diseño de la carta. -->
+    <div class="col-4">
+      <div class="card">
+        <img class="object-fit-cover" height="260" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQzsbrQ-CBlRMcqxEIuxg_ZJYj_da8ze8mqFRPUGG6o-jBh103S" class="card-img-top" alt="Jurassic World">
+        <div class="card-body">
+          <h3 class="card-title">Jurassic World</h3>
+          <p class="card-text">Una nueva especie de dinosaurio, creada por los científicos de forma artificial, es más inteligente y peligrosa que los animales conocidos y termina por atacar a los turistas que visitan el parque temático Jurassic World, situado en una isla frente a Costa Rica.</p>
+          <ul class="list-group mb-4">
+            <li class="list-group-item"><strong>Fecha de estreno</strong> 11 de junio de 2015</li>
+            <li class="list-group-item"><strong>Género</strong> Acción</li>
+          </ul>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewCommentsMovie">
+            Ver comentarios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="viewCommentsMovie" tabindex="-1" aria-labelledby="viewCommentsMovie" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- TODO: Agregar el titulo de la película. -->
+        <h1 class="modal-title fs-5" id="viewCommentsMovieLabel">Titulo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group mb-4">
+          <!-- TODO: Listado de comentarios - Pueden ser editables o eliminados. -->
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            An item
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </li>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            A second item
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </li>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            A third item
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </li>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            A fourth item
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </li>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            And a fifth one
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </li>
+        </ul>
+        <div class="mb-3">
+          <label for="textAreaNewComment" class="form-label m-0 h6">Nuevo comentario</label>
+          <textarea class="form-control" id="textAreaNewComment" rows="3"></textarea>
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
