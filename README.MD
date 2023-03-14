@@ -87,13 +87,8 @@ No es necesario instalar librerías adicionales, por defecto la prueba está lis
 [ ] Permitir a los usuarios comentar las películas. Estos comentarios van almacenados en la base de datos usando la API de PHP. <br/>
 [ ] La visualización y creación de nuevos comentarios, deberá ser dentro de un modal.
 
-## Envío del entregable
-
-Una vez finalices con la prueba, podrás enviarla alguno de los dos correos ofrecidos para su respectiva revisión.
-
-- aospina@garantiascomunitarias.com
-- jclopezm@garantiascomunitarias.com
-
 ## Información adicional
+
+Una vez finalizada la prueba, deberá subir el proyecto en su propio repositorio de git de forma pública y enviar el link al correo aospina@garantiascomunitarias.com, con el asunto POSTULADO RED SOPORTE TECNOLÓGICO, además deberá incluir sus datos personales como nombre, cédula y contacto.
 
 Nuestro equipo de trabajo desarrolló este proyecto con el propósito de filtrar la gran cantidad de solicitudes que recibimos para este puesto y facilitar el proceso de selección. Agradecemos tu interés y esperamos que este proceso sea beneficioso tanto para nosotros como para ti.
