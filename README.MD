@@ -87,6 +87,10 @@ No es necesario instalar librerías adicionales, por defecto la prueba está lis
 [ ] Permitir a los usuarios comentar las películas. Estos comentarios van almacenados en la base de datos usando la API de PHP. <br/>
 [ ] La visualización y creación de nuevos comentarios, deberá ser dentro de un modal.
 
+## Fecha límite del entregable
+
+Cabe recarlacar que tienen un tiempo de 4 días hábiles para hacer la entrega de la misma, siendo la fecha límite el jueves 30 de marzo.
+
 ## Información adicional
 
 Una vez finalizada la prueba, deberá subir el proyecto en su propio repositorio de git de forma pública y enviar el link al correo aospina@garantiascomunitarias.com, con el asunto POSTULADO RED SOPORTE TECNOLÓGICO, además deberá incluir sus datos personales como nombre, cédula y contacto.
