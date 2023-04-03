@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Clase encargada de realizar la respectiva lógica de conexión con la base de datos.
  */

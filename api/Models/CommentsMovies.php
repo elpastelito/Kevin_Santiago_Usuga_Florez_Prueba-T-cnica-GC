@@ -1,5 +1,4 @@
 <?php
-
 class CommentsMovies
 {
   public int | null $id;
