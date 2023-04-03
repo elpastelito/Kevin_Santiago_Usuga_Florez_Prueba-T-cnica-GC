@@ -14,15 +14,15 @@
           <ul class="list-group mb-4">
             <li class="list-group-item"><strong>Fecha de estreno</strong> {{listMovie.release_date}}</li>
                 <li class="list-group-item"><strong>Género</strong>
-                  <!-- <ng-container ng-repeat="genre in genres"> -->
+                  <ng-container ng-repeat="genre in genres">
                   <ng-container ng-repeat="genre_id in listMovie.genre_ids">
-                    <!-- <ng-container *ngIf="genre_id == genre.id">
-                    <ng-container *ngIf="genre.id == genre_id"> -->
-                      {{genre_id}},
-                    <!-- </ng-container>
-                    </ng-container> -->
+                    <ng-container ngI-If="genre_id == genre.id">
+                    <ng-container ng-If="genre.id == genre_id">
+                      {{genre.name}},
+                    </ng-container>
+                    </ng-container>
                   </ng-container>
-                  <!-- </ng-container> -->
+                  </ng-container>
                 </li>
           </ul>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewCommentsMovie" ng-click="loadMovie(listMovie.id)">
@@ -46,25 +46,27 @@
       </div>
       <div class="modal-body">
         <ng-container ng-repeat="comment in comments.data">
-          <div class="">
-            <ul class="list-group mb-4">
-              <!-- TODO: Listado de comentarios - Pueden ser editables o eliminados. -->
-              <li class="list-group-item d-flex align-items-center justify-content-between">
-                {{comment.comment}}
-                <button type="button" class="btn btn-danger">Eliminar</button>
-              </li>
-            </ul>
-          </div>
+          <ul class="list-group mb-4">
+            <!-- TODO: Listado de comentarios - Pueden ser editables o eliminados. -->
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+              {{comment.comment}}
+              <button type="button" class="btn btn-danger" ng-click="delete(comment.id)">Eliminar</button>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-container ng-If="comments.data.length == 0">
+          <h2>Aún no hay comentarios aquí</h2>
+          <h4>Se el primer@ en comentar</h4>
         </ng-container>
       </div>
       <div class="modal-footer">
         <div class="mb-3 col-11">
           <label for="textAreaNewComment" class="form-label m-0 h6">Nuevo comentario</label>
-          <textarea class="form-control" id="textAreaNewComment" rows="3"></textarea>
+          <textarea class="form-control" id="textAreaNewComment" rows="3" ng-model="comment"></textarea>
         </div>
         <div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-primary" ng-click="postComment(comment,getMovie.id)">Guardar</button>
         </div>
       </div>
     </div>
