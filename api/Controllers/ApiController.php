@@ -21,15 +21,18 @@ class ApiController
   {
     // Obtendremos todas las solicitudes de GET.
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-      if ($_SERVER['REQUEST_URI'] === '/comments') {
-        echo $this->commentsController->getAll();
+      if (isset($_GET['movieId'])) {
+        $movie = $_GET['movieId'];
+        echo $this->commentsController->getAllByMovie($movie);
         return;
       }
+    } else {
+      return $this->methodNotFound2();
     }
 
     // Obtendremos todas las solicitudes de POST.
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      if ($_SERVER['REQUEST_URI'] === '/comments') {
+      if ($_SERVER['REQUEST_URI'] === '/postComments') {
         echo $this->commentsController->create();
         return;
       }
@@ -39,7 +42,7 @@ class ApiController
     if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
       $req = explode('/', $_SERVER['REQUEST_URI']);
       
-      if (('/' . $req[1]) === '/comments') {
+      if (('/' . $req[1]) === '/patchComments') {
         echo $this->commentsController->update($req[2]); // => Envía el id del registro a actualizar
         return;
       }
@@ -47,21 +50,27 @@ class ApiController
 
     // Obtendremos todas las solicitudes de DELETE.
     if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-      if ($_SERVER['REQUEST_URI'] === '/comments') {
+      if ($_SERVER['REQUEST_URI'] === '/deleteComments') {
         echo $this->commentsController->delete();
         return;
       }
     }
 
-    return $this->methodNotFound();
+    // return $this->methodNotFound();
   }
 
   /**
    * Lógica encargada de envíar una respuesta de Endpoint no encontrado.
    */
-  private function methodNotFound()
+  private function methodNotFound1()
   {
     http_response_code(404);
-    echo json_encode(['error' => 'Endpoint not found.']);
+    echo json_encode(['error' => 'Endpoint not found 1.']);
+  }
+
+  private function methodNotFound2()
+  {
+    http_response_code(404);
+    echo json_encode(['error' => 'Endpoint not found 2.']);
   }
 }

@@ -1,69 +1,71 @@
 <div class="mb-5">
   <div class="mb-3">
-    <input type="text" class="form-control" id="searchMovie" placeholder="Buscar pelicula">
+    <input type="text" class="form-control" id="searchMovie" placeholder="Buscar pelicula" ng-model="buscarTitulo">
   </div>
   <div class="container row">
     <!-- TODO: Con el ng-for deberás hacer que por cada pelicula que venga en la API, se deberá mostrar este mismo diseño de la carta. -->
-    <div class="col-4">
-      <div class="card">
-        <img class="object-fit-cover" height="260" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQzsbrQ-CBlRMcqxEIuxg_ZJYj_da8ze8mqFRPUGG6o-jBh103S" class="card-img-top" alt="Jurassic World">
+    <div class="col-3" ng-repeat="listMovie in listMovies | filter:buscarTitulo">
+      <div class="card" style="height: 600;">
+        <img class="object-fit-cover" height="390" src="
+        https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{listMovie.poster_path}}" class="card-img-top img-fluid" alt="{{listMovie.title}}">
         <div class="card-body">
-          <h3 class="card-title">Jurassic World</h3>
-          <p class="card-text">Una nueva especie de dinosaurio, creada por los científicos de forma artificial, es más inteligente y peligrosa que los animales conocidos y termina por atacar a los turistas que visitan el parque temático Jurassic World, situado en una isla frente a Costa Rica.</p>
+          <h3 class="card-title">{{listMovie.title}}</h3>
+          <p class="card-text">{{listMovie.overview}}</p>
           <ul class="list-group mb-4">
-            <li class="list-group-item"><strong>Fecha de estreno</strong> 11 de junio de 2015</li>
-            <li class="list-group-item"><strong>Género</strong> Acción</li>
+            <li class="list-group-item"><strong>Fecha de estreno</strong> {{listMovie.release_date}}</li>
+                <li class="list-group-item"><strong>Género</strong>
+                  <!-- <ng-container ng-repeat="genre in genres"> -->
+                  <ng-container ng-repeat="genre_id in listMovie.genre_ids">
+                    <!-- <ng-container *ngIf="genre_id == genre.id">
+                    <ng-container *ngIf="genre.id == genre_id"> -->
+                      {{genre_id}},
+                    <!-- </ng-container>
+                    </ng-container> -->
+                  </ng-container>
+                  <!-- </ng-container> -->
+                </li>
           </ul>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewCommentsMovie">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewCommentsMovie" ng-click="loadMovie(listMovie.id)">
             Ver comentarios
           </button>
         </div>
       </div>
+      <br>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="viewCommentsMovie" tabindex="-1" aria-labelledby="viewCommentsMovie" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <!-- TODO: Agregar el titulo de la película. -->
-        <h1 class="modal-title fs-5" id="viewCommentsMovieLabel">Titulo</h1>
+        <h1 class="modal-title fs-5" id="viewCommentsMovieLabel">{{getMovie.title}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <ul class="list-group mb-4">
-          <!-- TODO: Listado de comentarios - Pueden ser editables o eliminados. -->
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            An item
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </li>
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            A second item
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </li>
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            A third item
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </li>
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            A fourth item
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </li>
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            And a fifth one
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </li>
-        </ul>
-        <div class="mb-3">
-          <label for="textAreaNewComment" class="form-label m-0 h6">Nuevo comentario</label>
-          <textarea class="form-control" id="textAreaNewComment" rows="3"></textarea>
-        </div>        
+        <ng-container ng-repeat="comment in comments.data">
+          <div class="">
+            <ul class="list-group mb-4">
+              <!-- TODO: Listado de comentarios - Pueden ser editables o eliminados. -->
+              <li class="list-group-item d-flex align-items-center justify-content-between">
+                {{comment.comment}}
+                <button type="button" class="btn btn-danger">Eliminar</button>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
+        <div class="mb-3 col-11">
+          <label for="textAreaNewComment" class="form-label m-0 h6">Nuevo comentario</label>
+          <textarea class="form-control" id="textAreaNewComment" rows="3"></textarea>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
       </div>
     </div>
   </div>

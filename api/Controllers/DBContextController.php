@@ -5,11 +5,12 @@
  */
 class DBContextController
 {
-  private String $port = "3308";
-  private String $username = "root";
-  private String $host = "127.0.0.1";
-  private String $password = "calidadprimero";
-  private String $database_name = "prueba_tecnica";
+  private static $conexion=null;
+  private $port = "33065";
+  private $username = "root";
+  private $host = "localhost";
+  private $password = "";
+  private $database_name = "prueba_tecnica";
 
   /**
    * Prepará la conexión con la base de datos para realizar peticiones a la misma.
