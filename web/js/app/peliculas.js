@@ -14,7 +14,6 @@ app.controller("PeliculasController", [
       )
       .then(function (res) {
         $scope.listMovies = res.data.results;
-        console.log($scope.listMovies);
       });
       $http
       .get(
@@ -22,20 +21,41 @@ app.controller("PeliculasController", [
       )
       .then(function (res) {
         $scope.genres = res.data.genres;
-        console.log($scope.genres);
       });
       $scope.loadMovie = function (movieId) {
-        console.log(movieId);
         $http.get("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=15b23a6844a8fc6ccbc4316c8da69a0a&language=es-ES")
         .then(function (res) {
           $scope.getMovie = res.data;
-          console.log($scope.getMovie);
         })
         $http.get("http://localhost:8000/allComments?movieId="+movieId)
         .then(function (res) {
           $scope.comments = res.data;
-          console.log($scope.comments.data);
         })
+      }
+      $scope.postComment = function (comment,idMovie) {
+
+        var data = {
+          comment: comment,
+          idMovie: idMovie
+        }
+
+        $http.post("http://localhost:8000/allComments/postComments",{
+          comment: data.comment,
+          idMovie: data.idMovie
+        })
+        .then(function (response) {
+          console.log(response);
+        }).catch(function(response) {
+          console.log("ERROR:", response);
+        });
+      }
+      $scope.delete = function (id) {
+        $http.delete("http://localhost:8000/allComments/deleteComments?id="+id)
+        .then(function (response) {
+          console.log(response);
+        }).catch(function(response) {
+          console.log("ERROR:", response);
+        });
       }
   },
 ]);

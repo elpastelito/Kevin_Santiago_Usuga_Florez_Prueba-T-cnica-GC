@@ -1,7 +1,7 @@
 /**
  * Cargamos el módulo de rutas para nuestra aplicación.
  */
-const app = angular.module('StartModule', ['ngRoute']);
+var app = angular.module('StartModule', ['ngRoute','ngResource'])
 
 app.controller('StartController', ['$scope', function ($scope) {
   $scope.navbarComponent = `shared/navbar.html`;

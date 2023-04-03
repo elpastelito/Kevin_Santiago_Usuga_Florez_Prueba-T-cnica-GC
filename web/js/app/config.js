@@ -1,4 +1,5 @@
 app.config(function ($routeProvider) {
+$routeProvider.errorOnUnhandledRejections(false);
   $routeProvider
       .when('/', {
           templateUrl: 'pages/peliculas.html',
